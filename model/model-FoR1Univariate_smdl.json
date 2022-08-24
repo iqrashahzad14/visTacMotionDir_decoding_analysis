@@ -1,0 +1,128 @@
+{
+  "Name": "FoR1",
+  "Description": "contrasts for the FoR1 dataset",
+  "Input": {
+    "task": "FoR1"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.visual_vertical",
+          "trial_type.visual_horizontal",
+          "trial_type.handUp_vertical",
+          "trial_type.handUp_horizontal",
+          "trial_type.handDown_vertical",
+          "trial_type.handDown_horizontal",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+        "trial_type.visual_vertical",
+          "trial_type.visual_horizontal",
+          "trial_type.handUp_vertical",
+          "trial_type.handUp_horizontal",
+          "trial_type.handDown_vertical",
+          "trial_type.handDown_horizontal"]
+    },
+    
+    {
+      "Level": "subject",
+      "AutoContrasts": [
+        "trial_type.visual_vertical",
+        "trial_type.visual_horizontal",
+        "trial_type.handUp_vertical",
+        "trial_type.handUp_horizontal",
+        "trial_type.handDown_vertical",
+        "trial_type.handDown_horizontal"],
+      "Contrasts": [
+        {
+          "Name": "visual_ver_gt_hor",
+          "ConditionList": [
+            "trial_type.visual_vertical", "trial_type.visual_horizontal"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "visual_hor_gt_vert",
+          "ConditionList": [
+            "trial_type.visual_vertical", "trial_type.visual_horizontal"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "handUp_ver_gt_hor",
+          "ConditionList": [
+            "trial_type.handUp_vertical", "trial_type.handUp_horizontal"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "handUp_hor_gt_vert",
+          "ConditionList": [
+            "trial_type.handUp_vertical", "trial_type.handUp_horizontal"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "handDown_ver_gt_hor",
+          "ConditionList": [
+            "trial_type.handDown_vertical", "trial_type.handDown_horizontal"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "handDown_hor_gt_vert",
+          "ConditionList": [
+            "trial_type.handDown_vertical", "trial_type.handDown_horizontal"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "visual_vert_gt_tactile_vert",
+          "ConditionList": [
+            "trial_type.visual_vertical", "trial_type.handDown_vertical"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "tactile_vert_gt_visual_vert",
+          "ConditionList": [
+            "trial_type.visual_vertical", "trial_type.handDown_vertical"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "visual_hor_gt_tactile_hor",
+          "ConditionList": [
+            "trial_type.visual_horizontal", "trial_type.handDown_horizontal"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "tactile_hor_gt_visual_hor",
+          "ConditionList": [
+            "trial_type.handDown_horizontal", "trial_type.visual_horizontal"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        }
+        
+      ]
+    },
+    {
+      "Level": "dataset",
+      "AutoContrasts": ["trial_type.visual_vertical", "trial_type.visual_horizontal", "trial_type.tactile_vertical", "trial_type.tactile_horizontal", "visual_ver_gt_hor", "visual_hor_gt_vert", "tactile_ver_gt_hor", "tactile_hor_gt_vert", "visual_vert_gt_tactile_vert", "tactile_vert_gt_visual_vert", "visual_hor_gt_tactile_hor", "tactile_hor_gt_visual_hor"]
+    }
+  ]
+}
